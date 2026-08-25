@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <sub>Autores: Dayan Carvalho Ramos Salles de Oliveira, Alexandre Vilhena da Silva Neto, Mário Cesar Ferreira Lima Junior, Julia Stefanie Santos Mendonça </sub>
+  <sub>Autores: Dayan Carvalho Ramos Salles de Oliveira, Alexandre Vilhena da Silva Neto, Mário Cesar Ferreira Lima Junior, Julia Stefanie Santos Mendonça, Fabiana Godoy Malaspina, Camila Arantes Ferreira Brecht D'oliveira </sub>
 </p>
 
 ---
