@@ -21,23 +21,13 @@
 
 ## Introdução
 
-Bases de saúde pública brasileiras — SINAN, SIM, SINASC, CadÚnico, e os sistemas estaduais/municipais que se alimentam delas — quase nunca compartilham um identificador único de pessoa. O mesmo indivíduo pode aparecer dezenas de vezes ao longo dos anos, em bases diferentes, com o nome grafado de formas ligeiramente distintas, datas de nascimento digitadas com erro, campos de mãe/pai preenchidos ou não, e às vezes só uma idade aproximada em vez de uma data exata. Sem uma forma confiável de dizer "estes três registros são a mesma pessoa", qualquer análise longitudinal (série histórica de um paciente, contagem real de óbitos, cruzamento entre programas sociais e de saúde) fica sujeita a subcontagem ou duplicidade.
+Bases de saúde pública brasileiras: SINAN, SIM, SINASC, CadÚnico, e os sistemas estaduais/municipais que se alimentam delas, quase nunca compartilham um identificador único de pessoa. O mesmo indivíduo pode aparecer dezenas de vezes ao longo dos anos, em bases diferentes, com o nome grafado de formas ligeiramente distintas, datas de nascimento digitadas com erro, campos de mãe/pai preenchidos ou não, e às vezes só uma idade aproximada em vez de uma data exata. Sem uma forma confiável de dizer "estes três registros são a mesma pessoa", qualquer análise longitudinal (série histórica de um paciente, contagem real de óbitos, cruzamento entre programas sociais e de saúde) fica sujeita a subcontagem ou duplicidade.
 
-Este repositório contém um pipeline único em Python que resolve esse problema fim a fim: ele lê as bases originais em praticamente qualquer formato usado pelo DATASUS, padroniza os campos-chave, roda uma deduplicação probabilística com o [Splink](https://moj-analytical-services.github.io/splink/) (que aprende, via Expectation-Maximization, o quanto cada semelhança de campo pesa a favor de "é a mesma pessoa"), e então passa cada par candidato por um **motor de regras de refinamento** construído a partir de revisão manual de milhares de casos reais — porque em dados de saúde brasileiros, nome de mãe ausente, sobrenome trocado por erro de digitação e abreviações de primeiro nome são a regra, não a exceção. No final, cada indivíduo real recebe um identificador único (`id_global`) que amarra todos os seus registros, em todas as bases, ao longo do tempo.
+Este repositório contém um pipeline único em Python que resolve esse problema fim a fim: ele lê as bases originais em praticamente qualquer formato usado pelo DATASUS, padroniza os campos-chave, roda uma deduplicação probabilística com o [Splink](https://moj-analytical-services.github.io/splink/) (que aprende, via Expectation-Maximization, o quanto cada semelhança de campo pesa a favor de "é a mesma pessoa"), e então passa cada par candidato por um **motor de regras de refinamento** construído a partir de revisão manual de milhares de casos reais, porque em dados de saúde brasileiros, nome de mãe ausente, sobrenome trocado por erro de digitação e abreviações de primeiro nome são a regra, não a exceção. No final, cada indivíduo real recebe um identificador único (`id_global`) que amarra todos os seus registros, em todas as bases, ao longo do tempo.
 
 O pipeline foi desenhado para rodar sem servidor externo (tudo em DuckDB, local), ser **retomável** após interrupções, processar bases maiores que a RAM disponível (via *spillover* para disco e processamento em blocos por ano), e permitir **auditoria e correção manual** das decisões antes da consolidação final.
 
-> **Este projeto lida com dados pessoais sensíveis de saúde (nome, filiação, data de nascimento) sujeitos à LGPD.** Veja o aviso na seção seguinte antes de publicar ou compartilhar este repositório com dados reais.
-
----
-
-## Aviso importante sobre dados sensíveis
-
-- **Nunca** faça commit de arquivos reais de dados (`BASES/`, `*.duckdb`, `*.parquet`, `*.csv`, `*.dbf`, `*.dbc`, logs de execução). O `.gitignore` incluído já bloqueia esses padrões.
-- Trate os arquivos de saída (`DEDUP_RESULTS/`, `COMPLETE_WITH_ID/`) com o mesmo cuidado dado às bases originais — eles preservam nomes e datas de nascimento.
-- Considere anonimizar/pseudonimizar dados de exemplo caso queira disponibilizar um dataset de demonstração público.
-
----
+> **Este projeto lida com dados pessoais sensíveis de saúde (nome, filiação, data de nascimento) sujeitos à LGPD.** 
 
 ## Sumário
 
@@ -62,7 +52,7 @@ O pipeline foi desenhado para rodar sem servidor externo (tudo em DuckDB, local)
 
 ## Como funciona
 
-O script roda como um script único — não é um pacote importável, e não tem argumentos de linha de comando; toda a configuração é feita editando a dataclass `UserConfig` no topo do arquivo. A execução completa passa por seis grandes etapas:
+O script roda como um script único, não é um pacote importável, e não tem argumentos de linha de comando; toda a configuração é feita editando a dataclass `UserConfig` no topo do arquivo. A execução completa passa por seis grandes etapas:
 
 ```mermaid
 flowchart TD
