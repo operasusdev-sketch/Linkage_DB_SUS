@@ -3,7 +3,7 @@
   <img src="https://img.shields.io/badge/DuckDB-powered-FFF000?logo=duckdb&logoColor=black" alt="DuckDB" />
   <img src="https://img.shields.io/badge/Splink-4.x-orange" alt="Splink 4.x" />
   <img src="https://img.shields.io/badge/dados-LGPD%20sens%C3%ADveis-critical" alt="Dados sensíveis LGPD" />
-  <img src="https://img.shields.io/badge/licen%C3%A7a-a%20definir-lightgrey" alt="Licença a definir" />
+  <a href="https://doi.org/10.5281/zenodo.22098376"><img src="https://zenodo.org/badge/1334423553.svg" alt="DOI"></a
 </p>
 
 <h1 align="center">Sistema de Deduplicação Probabilística de Registros de Saúde</h1>
