@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <sub>Autores: Dayan Oliveira, Alexandre Vilhena, Mário Junior e Julia Stefanie · Última atualização: 29 de maio de 2026</sub>
+  <sub>Autores: Dayan Carvalho Ramos Salles de Oliveira, Alexandre Vilhena da Silva Neto, Mário Cesar Ferreira Lima Junior, Julia Stefanie Santos Mendonça </sub>
 </p>
 
 ---
