@@ -399,18 +399,3 @@ O pipeline foi construído para **suportar interrupções** em qualquer etapa:
 ## Logs
 
 Toda execução gera automaticamente um arquivo `log_deduplicacao_YYYYMMDD_HHMMSS.txt`, contendo cópia completa de tudo impresso no console, via a classe `Logger` — permite auditar/depurar execuções longas mesmo após fechar o terminal.
-
----
-
-## Limitações conhecidas
-
-- **Datas inválidas não são rejeitadas na conversão final.** A detecção de formato usa validação de data para *identificar* o formato predominante, mas a conversão de cada valor individual não valida o resultado — datas como "30/02/2023" viram a string `"30022023"` e permanecem no dataset, sem aviso, participando da comparação Levenshtein como string.
-- O script assume convenções específicas de nome de arquivo para identificar bases especiais (`SIM`, `SINASC`, `CADUNICO` como substring, case-insensitive).
-- Não há suíte de testes automatizados; validações são feitas por inspeção manual de `pares_auditoria.parquet`.
-- Não há interface de linha de comando — toda configuração é feita editando `UserConfig` diretamente.
-
----
-
-## Licença
-
-*(Defina aqui a licença do projeto — por exemplo, MIT, GPL-3.0, ou "uso interno/restrito" caso os dados/processo não devam ser redistribuídos livremente.)*
