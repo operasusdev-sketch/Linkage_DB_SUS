@@ -45,8 +45,6 @@ O pipeline foi desenhado para rodar sem servidor externo (tudo em DuckDB, local)
 - [Retomada e auditoria manual](#retomada-e-auditoria-manual)
 - [Performance e memória](#performance-e-memória)
 - [Logs](#logs)
-- [Limitações conhecidas](#limitações-conhecidas)
-- [Licença](#licença)
 
 ---
 
