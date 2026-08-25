@@ -12,8 +12,6 @@ using record linkage with DuckDB and Splink. The complete process includes:
 5. Transitive clustering of duplicate records
 6. Generation of final datasets with preserved original data
 
-Authors: Dayan Oliveira, Alexandre Vilhena, Mário Junior e Julia Stefanie
-Last update: 29 Maio de 2026
 """
 from __future__ import annotations
 
